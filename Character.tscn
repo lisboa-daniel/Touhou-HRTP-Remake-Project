@@ -1,0 +1,113 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Character.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/reimu_sprites.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://NormalCharHitbox.tres" type="Shape2D" id=3]
+[ext_resource path="res://Sparks.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=11]
+
+[sub_resource type="Animation" id=10]
+resource_name = "AttackHitbox0"
+length = 3.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -23, 6 ), Vector2( -23, -12 ), Vector2( 5, -23 ), Vector2( 19, -13 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "AttackHitbox1"
+length = 3.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 23, 6 ), Vector2( 23, -12 ), Vector2( -5, -23 ), Vector2( -19, -13 ) ]
+}
+
+[sub_resource type="CapsuleShape2D" id=13]
+radius = 8.00002
+height = 18.0
+
+[sub_resource type="Animation" id=12]
+resource_name = "DmgFlick"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Character" type="Node2D"]
+script = ExtResource( 1 )
+invencibleCD = 3.0
+invencibleDecrease = 1.0
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="CHR" type="AnimatedSprite" parent="Sprites"]
+frames = ExtResource( 2 )
+animation = "Walk"
+playing = true
+
+[node name="Rod" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Hitbox" type="CollisionShape2D" parent="Rod"]
+modulate = Color( 0, 0.835294, 1, 1 )
+show_behind_parent = true
+position = Vector2( -23, 6 )
+shape = SubResource( 11 )
+disabled = true
+
+[node name="Animate" type="AnimationPlayer" parent="Rod/Hitbox"]
+playback_speed = 8.0
+anims/AttackHitbox0 = SubResource( 10 )
+anims/AttackHitbox1 = SubResource( 8 )
+
+[node name="Feet" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="Feet"]
+position = Vector2( 11, 1 )
+shape = SubResource( 13 )
+disabled = true
+
+[node name="Damage" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="Damage"]
+show_behind_parent = true
+position = Vector2( 0.25, 0 )
+shape = ExtResource( 3 )
+
+[node name="Animate" type="AnimationPlayer" parent="."]
+anims/DmgFlick = SubResource( 12 )
+
+[node name="Sparks" parent="." instance=ExtResource( 4 )]
+visible = false
+
+[connection signal="body_entered" from="Feet" to="." method="_on_Feet_body_entered"]
+[connection signal="body_entered" from="Damage" to="." method="_on_Damage_body_entered"]

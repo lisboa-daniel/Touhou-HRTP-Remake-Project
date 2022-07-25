@@ -1,0 +1,239 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Orb.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Plank.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Ball.gd" type="Script" id=3]
+[ext_resource path="res://Character.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Card.tscn" type="PackedScene" id=5]
+[ext_resource path="res://3D.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI.gd" type="Script" id=7]
+[ext_resource path="res://Font/ft.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Vortex.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Sprites_Images/ui_bg.png" type="Texture" id=10]
+[ext_resource path="res://Sprites_Images/playerhud.png" type="Texture" id=11]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node2D
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	var tex = $Viewport.get_texture()
+	#$BG.texture = tex
+	pass
+"
+
+[sub_resource type="PhysicsMaterial" id=1]
+bounce = 1.0
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Label
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	text = \"fps = \"+str(Engine. get_frames_per_second())
+#	pass
+"
+
+[node name="Game" type="Node2D"]
+script = SubResource( 2 )
+
+[node name="BG" type="Sprite" parent="."]
+position = Vector2( 0, 16 )
+texture = ExtResource( 10 )
+centered = false
+
+[node name="Playerhud" type="Sprite" parent="."]
+position = Vector2( 28, 24 )
+texture = ExtResource( 11 )
+
+[node name="Pixel" type="Node2D" parent="."]
+visible = false
+position = Vector2( 64, 49 )
+
+[node name="Cards" type="Node2D" parent="Pixel"]
+position = Vector2( 112, 167 )
+
+[node name="Card" parent="Pixel/Cards" instance=ExtResource( 5 )]
+position = Vector2( 32, 0 )
+
+[node name="Card3" parent="Pixel/Cards" instance=ExtResource( 5 )]
+position = Vector2( 64, 0 )
+
+[node name="Card4" parent="Pixel/Cards" instance=ExtResource( 5 )]
+position = Vector2( 96, 0 )
+
+[node name="Card2" parent="Pixel/Cards" instance=ExtResource( 5 )]
+
+[node name="Card5" parent="Pixel/Cards" instance=ExtResource( 5 )]
+position = Vector2( 160, 0 )
+
+[node name="Card6" parent="Pixel/Cards" instance=ExtResource( 5 )]
+position = Vector2( 192, 0 )
+
+[node name="Card7" parent="Pixel/Cards" instance=ExtResource( 5 )]
+position = Vector2( 224, 0 )
+
+[node name="Card8" parent="Pixel/Cards" instance=ExtResource( 5 )]
+position = Vector2( 128, 0 )
+
+[node name="Card9" parent="Pixel/Cards" instance=ExtResource( 5 )]
+position = Vector2( 288, 0 )
+
+[node name="Card10" parent="Pixel/Cards" instance=ExtResource( 5 )]
+position = Vector2( 256, 0 )
+
+[node name="Cards2" type="Node2D" parent="Pixel/Cards"]
+position = Vector2( 0, -40 )
+
+[node name="Card" parent="Pixel/Cards/Cards2" instance=ExtResource( 5 )]
+position = Vector2( 32, 0 )
+
+[node name="Card3" parent="Pixel/Cards/Cards2" instance=ExtResource( 5 )]
+position = Vector2( 64, 0 )
+
+[node name="Card4" parent="Pixel/Cards/Cards2" instance=ExtResource( 5 )]
+position = Vector2( 96, 0 )
+
+[node name="Card2" parent="Pixel/Cards/Cards2" instance=ExtResource( 5 )]
+
+[node name="Card5" parent="Pixel/Cards/Cards2" instance=ExtResource( 5 )]
+position = Vector2( 160, 0 )
+
+[node name="Card6" parent="Pixel/Cards/Cards2" instance=ExtResource( 5 )]
+position = Vector2( 192, 0 )
+
+[node name="Card7" parent="Pixel/Cards/Cards2" instance=ExtResource( 5 )]
+position = Vector2( 224, 0 )
+
+[node name="Card8" parent="Pixel/Cards/Cards2" instance=ExtResource( 5 )]
+position = Vector2( 128, 0 )
+
+[node name="Card9" parent="Pixel/Cards/Cards2" instance=ExtResource( 5 )]
+position = Vector2( 288, 0 )
+
+[node name="Card10" parent="Pixel/Cards/Cards2" instance=ExtResource( 5 )]
+position = Vector2( 256, 0 )
+
+[node name="Cards3" type="Node2D" parent="Pixel/Cards"]
+position = Vector2( 0, -80 )
+
+[node name="Card" parent="Pixel/Cards/Cards3" instance=ExtResource( 5 )]
+position = Vector2( 32, 0 )
+
+[node name="Card3" parent="Pixel/Cards/Cards3" instance=ExtResource( 5 )]
+position = Vector2( 64, 0 )
+
+[node name="Card2" parent="Pixel/Cards/Cards3" instance=ExtResource( 5 )]
+
+[node name="Card7" parent="Pixel/Cards/Cards3" instance=ExtResource( 5 )]
+position = Vector2( 224, 0 )
+
+[node name="Card9" parent="Pixel/Cards/Cards3" instance=ExtResource( 5 )]
+position = Vector2( 288, 0 )
+
+[node name="Card10" parent="Pixel/Cards/Cards3" instance=ExtResource( 5 )]
+position = Vector2( 256, 0 )
+
+[node name="Orb" parent="Pixel" instance=ExtResource( 1 )]
+position = Vector2( 0, 143 )
+collision_layer = 3
+collision_mask = 3
+mass = 0.24
+physics_material_override = SubResource( 1 )
+gravity_scale = 4.0
+sleeping = true
+script = ExtResource( 3 )
+vImpulseShoot = -125.0
+vImpulseAttack = -220.0
+hImpulseAttack = 140.0
+
+[node name="Plank" parent="Pixel" instance=ExtResource( 2 )]
+position = Vector2( 256, 311 )
+scale = Vector2( 5, 0.5 )
+
+[node name="Plank2" parent="Pixel" instance=ExtResource( 2 )]
+position = Vector2( 256, -49 )
+scale = Vector2( 5, 0.5 )
+
+[node name="Plank3" parent="Pixel" instance=ExtResource( 2 )]
+position = Vector2( 576, 127 )
+rotation = -1.5708
+scale = Vector2( 2.8, 0.5 )
+
+[node name="Plank4" parent="Pixel" instance=ExtResource( 2 )]
+position = Vector2( -64, 135 )
+rotation = -1.5708
+scale = Vector2( 2.8, 0.5 )
+
+[node name="Character" parent="Pixel" instance=ExtResource( 4 )]
+position = Vector2( 260, 295 )
+shootDecrease = 2.0
+
+[node name="CHR" parent="Pixel/Character/Sprites" index="0"]
+frame = 1
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 640, 360 )
+handle_input_locally = false
+
+[node name="Spatial" parent="Viewport" instance=ExtResource( 6 )]
+visible = false
+
+[node name="UI" type="Control" parent="."]
+script = ExtResource( 7 )
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+visible = false
+margin_right = 632.0
+margin_bottom = 40.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Debug" type="Label" parent="UI"]
+margin_left = 8.0
+margin_top = 76.0
+margin_right = 224.0
+margin_bottom = 372.0
+custom_fonts/font = ExtResource( 8 )
+text = "FPS: 30"
+
+[node name="FPS" type="Label" parent="."]
+margin_left = 284.0
+margin_top = 8.0
+margin_right = 916.0
+margin_bottom = 88.0
+custom_fonts/font = ExtResource( 8 )
+text = "FPS: 30"
+script = SubResource( 4 )
+
+[node name="Vortex" parent="." instance=ExtResource( 9 )]
+position = Vector2( 176, 104 )
+
+[node name="Vortex2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 464, 100 )
+
+[connection signal="body_entered" from="Pixel/Orb" to="Pixel/Orb" method="_on_Orb_body_entered"]
+[connection signal="body_entered" from="Pixel/Character/Rod" to="Pixel/Character" method="_on_Rod_body_entered"]
+
+[editable path="Pixel/Character"]
