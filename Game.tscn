@@ -69,7 +69,6 @@ position = Vector2( 28, 24 )
 texture = ExtResource( 11 )
 
 [node name="Pixel" type="Node2D" parent="."]
-visible = false
 position = Vector2( 64, 49 )
 
 [node name="Cards" type="Node2D" parent="Pixel"]
